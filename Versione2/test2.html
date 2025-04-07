@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blu Trasimeno - Casa Vacanze a Tuoro sul Trasimeno</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset e base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #555;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #3498db;
+            transition: all 0.3s ease;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header fisso */
+        .header {
+            position: fixed;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .header-scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2980b9;
+            line-height: 1.1;
+        }
+        
+        .logo-subtext {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        /* Navigation */
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-list {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin: 0 15px;
+        }
+        
+        .nav-link {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #34495e;
+            text-transform: uppercase;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #3498db;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #3498db;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .booking-btn {
+            background-color: #2980b9;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-left: 20px;
+            box-shadow: 0 4px 8px rgba(41, 128, 185, 0.3);
+        }
+        
+        .booking-btn:hover {
+            background-color: #3498db;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(41, 128, 185, 0.4);
+        }
+        
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1100;
+        }
+        
+        .mobile-toggle span {
+            width: 30px;
+            height: 3px;
+            background: #2980b9;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hero section */
+        .hero {
+            height: 100vh;
+            background-image: url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-top: 0;
+            padding-top: 80px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            font-weight: 300;
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            background-color: #2980b9;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .hero-btn:hover {
+            background-color: white;
+            color: #2980b9;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Sezioni comuni */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #3498db;
+        }
+        
+        /* La Casa Section */
+        .about {
+            background-color: #f9f9f9;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-top: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+            padding: 0 30px;
+            min-width: 300px;
+        }
+        
+        .about-title {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #2c3e50;
+        }
+        
+        .about-subtitle {
+            font-size: 1.3rem;
+            color: #3498db;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .about-image {
+            flex: 1;
+            padding: 30px;
+            min-width: 300px;
+        }
+        
+        .about-img {
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        .about-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Servizi Section */
+        .features {
+            background-color: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            background-color: #3498db;
+            color: white;
+            font-size: 2rem;
+            padding: 25px 0;
+            text-align: center;
+        }
+        
+        .feature-content {
+            padding: 25px;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        /* Galleria Section */
+        .gallery {
+            background-color: #f9f9f9;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            height: 280px;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(52, 152, 219, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            text-align: center;
+            padding: 0 15px;
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-item:hover .gallery-title {
+            transform: translateY(0);
+        }
+        
+        /* Dintorni Section */
+        .surroundings {
+            background-color: white;
+        }
+        
+        .surroundings-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .surroundings-text {
+            flex: 1;
+            padding: 30px;
+            min-width: 300px;
+        }
+        
+        .surroundings-title {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #2c3e50;
+        }
+        
+        .surroundings-list {
+            list-style-type: none;
+            margin-top: 20px;
+        }
+        
+        .surroundings-item {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .surroundings-item::before {
+            content: '\f058';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #3498db;
+        }
+        
+        .surroundings-map {
+            flex: 1;
+            padding: 30px;
+            min-width: 300px;
+        }
+        
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            height: 400px;
+        }
+        
+        /* Recensioni Section */
+        .reviews {
+            background-color: #f9f9f9;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reviews::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .reviews .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .review-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .review-card::before {
+            content: '\f10d';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2rem;
+            color: rgba(52, 152, 219, 0.1);
+        }
+        
+        .review-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            padding-top: 20px;
+            color: #555;
+        }
+        
+        .review-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .review-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .review-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .review-info p {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin: 0;
+        }
+        
+        .review-stars {
+            color: #f1c40f;
+            margin-top: 5px;
+        }
+        
+        /* Contatti Section */
+        .contact {
+            background-color: #2c3e50;
+            color: white;
+            position: relative;
+        }
+        
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+        }
+        
+        .contact .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact .section-title h2 {
+            color: white;
+        }
+        
+        .contact .section-title p {
+            color: #bdc3c7;
+        }
+        
+        .contact .section-title::after {
+            background-color: #3498db;
+        }
+        
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 60px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            padding: 30px;
+            min-width: 300px;
+        }
+        
+        .contact-info-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            color: #3498db;
+            font-size: 1.5rem;
+            width: 40px;
+        }
+        
+        .contact-details {
+            flex: 1;
+        }
+        
+        .contact-details h4 {
+            color: white;
+            margin-bottom: 5px;
+        }
+        
+        .contact-details p {
+            color: #bdc3c7;
+            margin: 0;
+        }
+        
+        .contact-form {
+            flex: 1;
+            padding: 30px;
+            min-width: 300px;
+        }
+        
+        .contact-form-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            height: 150px;
+            resize: none;
+        }
+        
+        .submit-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .submit-btn:hover {
+            background-color: white;
+            color: #3498db;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #1a252f;
+            color: #bdc3c7;
+            padding: 80px 0 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .footer-text {
+            margin-bottom: 20px;
+            color: #95a5a6;
+            line-height: 1.7;
+        }
+        
+        .footer-title {
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #3498db;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #95a5a6;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 3px 0;
+        }
+        
+        .footer-links a:hover {
+            color: #3498db;
+            padding-left: 5px;
+        }
+        
+        .footer-social {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: #3498db;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding: 25px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 991px) {
+            .header-inner {
+                padding: 10px 0;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .nav-list {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: white;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                padding: 20px 0;
+                text-align: center;
+                z-index: 1000;
+            }
+            
+            .nav-list.active {
+                display: flex;
+            }
+            
+            .nav-item {
+                margin: 10px 0;
+            }
+            
+            .booking-btn {
+                display: none;
+            }
+            
+            .mobile-booking-btn {
+                display: block;
+                margin: 15px auto;
+                width: fit-content;
+            }
+            
+            .mobile-toggle {
+                display: flex;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .about-content,
+            .surroundings-content,
+            .contact-content {
+                flex-direction: column;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title p {
+                font-size: 1.1rem;
+            }
+            
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-column {
+                flex: 100%;
+                text-align: center;
+            }
+            
+            .footer-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .footer-social {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <div class="logo-text">Blu Trasimeno</div>
+                    <div class="logo-subtext">Casa Vacanze a Tuoro sul Trasimeno</div>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="#about" class="nav-link">La Casa</a></li>
+                        <li class="nav-item"><a href="#features" class="nav-link">Servizi</a></li>
+                        <li class="nav-item"><a href="#gallery" class="nav-link">Galleria</a></li>
+                        <li class="nav-item"><a href="#surroundings" class="nav-link">Dintorni</a></li>
+                        <li class="nav-item"><a href="#reviews" class="nav-link">Recensioni</a></li>
+                        <li class="nav-item"><a href="#contact" class="nav-link">Contatti</a></li>
+                        <li class="nav-item mobile-only"><a href="#contact" class="booking-btn mobile-booking-btn">Prenota Ora</a></li>
+                    </ul>
+                    <a href="#contact" class="booking-btn">Prenota Ora</a>
+                    <button class="mobile-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Vacanze da Sogno sul Lago Trasimeno</h1>
+            <p class="hero-subtitle">Scopri il relax e la bellezza della campagna umbra in un'oasi di pace sulle rive del Lago Trasimeno</p>
+            <a href="#contact" class="hero-btn">Prenota il tuo soggiorno</a>
+        </div>
+    </section>
+
+    <!-- La Casa Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-title">
+                <h2>La Nostra Casa</h2>
+                <p>Un'elegante dimora ristrutturata con stile per offrirti un soggiorno indimenticabile</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 class="about-title">Benvenuti a Blu Trasimeno</h3>
+                    <h4 class="about-subtitle">La tua oasi di pace sul lago</h4>
+                    <p>Benvenuti a Blu Trasimeno, un'incantevole casa vacanze situata nel caratteristico borgo di Tuoro sul Trasimeno. La nostra struttura offre un rifugio perfetto per chi desidera trascorrere momenti indimenticabili immerso nella bellezza naturale dell'Umbria e del famoso Lago Trasimeno.</p>
+                    <p>La casa, recentemente ristrutturata con materiali di pregio e finiture di alta qualità, mantiene lo charme e l'autenticità della tradizione umbra combinandola con tutti i comfort moderni. Gli spazi ampi e luminosi, l'arredamento curato nei minimi dettagli e l'atmosfera accogliente rendono Blu Trasimeno il luogo ideale per vacanze in famiglia o con gli amici.</p>
+                    <p>Dalla terrazza potrete godere di una vista mozzafiato sul lago, mentre il giardino privato offre uno spazio all'aperto perfetto per rilassarsi, fare barbecue o semplicemente godersi la tranquillità della campagna umbra.</p>
+                </div>
+                <div class="about-image">
+                    <div class="about-img">
+                        <img src="/api/placeholder/600/400" alt="Casa Blu Trasimeno">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi Section -->
+    <section id="features" class="section features">
+        <div class="container">
+            <div class="section-title">
+                <h2>I Nostri Servizi</h2>
+                <p>Comfort moderni e attenzioni speciali per rendere il tuo soggiorno indimenticabile</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Wi-Fi Gratuito</h3>
+                        <p>Connessione internet ad alta velocità disponibile in tutta la casa per rimanere sempre connessi.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-parking"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Parcheggio Privato</h3>
+                        <p>Ampio spazio per parcheggiare la tua auto in sicurezza all'interno della proprietà.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-swimming-pool"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Accesso al Lago</h3>
+                        <p>A pochi passi dalla casa potrai accedere al lago per nuotare o praticare sport acquatici.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Cucina Attrezzata</h3>
+                        <p>Cucina moderna completamente attrezzata con elettrodomestici di qualità e tutti gli utensili necessari.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-temperature-low"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Climatizzazione</h3>
+                        <p>Sistema di climatizzazione in tutta la casa per garantire il massimo comfort in ogni stagione.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Smart TV</h3>
+                        <p>TV a schermo piatto con canali satellitari e servizi di streaming per il tuo intrattenimento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galleria Section -->
+    <section id="gallery" class="section gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>La Nostra Galleria</h2>
+                <p>Scopri gli spazi e l'atmosfera unica della nostra casa vacanze</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="/api/placeholder/600/400" alt="Soggiorno" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Soggiorno Accogliente</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/600/400" alt="Camera da letto" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Camera Matrimoniale</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/600/400" alt="Cucina" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Cucina Moderna</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/600/400" alt="Bagno" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Bagno con Doccia</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/600/400" alt="Terrazza" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Terrazza Panoramica</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/600/400" alt="Giardino" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Giardino Privato</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dintorni Section -->
+    <section id="surroundings" class="section surroundings">
+        <div class="container">
+            <div class="section-title">
+                <h2>Esplora i Dintorni</h2>
+                <p>Scopri le meraviglie naturali e culturali che circondano la nostra casa vacanze</p>
+            </div>
+            <div class="surroundings-content">
+                <div class="surroundings-text">
+                    <h3 class="surroundings-title">Un territorio ricco di bellezze naturali e storiche</h3>
+                    <p>La posizione privilegiata di Blu Trasimeno ti permette di esplorare facilmente le meraviglie dell'Umbria e della vicina Toscana. Il Lago Trasimeno, con le sue isole e le sue spiagge, offre numerose opportunità per relax e attività all'aria aperta.</p>
+                    <p>A breve distanza troverai borghi medievali di grande fascino, siti archeologici e città d'arte ricche di storia e cultura.</p>
+                    <ul class="surroundings-list">
+                        <li class="surroundings-item">Lago Trasimeno e le sue isole (Isola Maggiore, Isola Polvese)</li>
+                        <li class="surroundings-item">Castiglione del Lago e la sua Rocca medievale (15 minuti)</li>
+                        <li class="surroundings-item">Perugia, capoluogo umbro ricco di storia (30 minuti)</li>
+                        <li class="surroundings-item">Assisi, città di San Francesco (45 minuti)</li>
+                        <li class="surroundings-item">Cortona, gioiello toscano (20 minuti)</li>
+                        <li class="surroundings-item">Montepulciano e la Val d'Orcia (40 minuti)</li>
+                        <li class="surroundings-item">Percorsi naturalistici e piste ciclabili intorno al lago</li>
+                    </ul>
+                </div>
+                <div class="surroundings-map">
+                    <div class="map-container">
+                        <!-- Placeholder per la mappa -->
+                        <img src="/api/placeholder/600/400" alt="Mappa dei dintorni" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recensioni Section -->
+    <section id="reviews" class="section reviews">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cosa Dicono i Nostri Ospiti</h2>
+                <p>Le opinioni di chi ha già vissuto l'esperienza Blu Trasimeno</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-text">
+                        "Un soggiorno meraviglioso in un luogo incantevole. La casa è bellissima e curata in ogni dettaglio, la vista sul lago è mozzafiato. I proprietari sono gentilissimi e sempre disponibili. Torneremo sicuramente!"
+                    </div>
+                    <div class="review-author">
+                        <div class="review-avatar">
+                            <img src="/api/placeholder/60/60" alt="Maria e Paolo">
+                        </div>
+                        <div class="review-info">
+                            <h4>Maria e Paolo</h4>
+                            <p>Milano, Italia</p>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-text">
+                        "Abbiamo passato una settimana perfetta in questa splendida casa. Posizione strategica per visitare l'Umbria e la Toscana, ambienti confortevoli e puliti. La terrazza con vista sul lago è il punto forte. Consigliatissimo!"
+                    </div>
+                    <div class="review-author">
+                        <div class="review-avatar">
+                            <img src="/api/placeholder/60/60" alt="Hans e Sophie">
+                        </div>
+                        <div class="review-info">
+                            <h4>Hans e Sophie</h4>
+                            <p>Monaco, Germania</p>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-text">
+                        "Che dire, una casa da sogno! Spazi ampi, arredamento curato e una vista incredibile. La posizione è perfetta per esplorare l'Umbria. I proprietari ci hanno accolto con calore e ci hanno dato ottimi consigli sui luoghi da visitare."
+                    </div>
+                    <div class="review-author">
+                        <div class="review-avatar">
+                            <img src="/api/placeholder/60/60" alt="John e Sarah">
+                        </div>
+                        <div class="review-info">
+                            <h4>John e Sarah</h4>
+                            <p>Londra, Regno Unito</p>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contattaci</h2>
+                <p>Siamo a tua disposizione per qualsiasi informazione o richiesta</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3 class="contact-info-title">Informazioni</h3>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Indirizzo</h4>
+                            <p>Via Lungolago 25, Tuoro sul Trasimeno (PG), Umbria, Italia</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Telefono</h4>
+                            <p>+39 123 456 7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>info@blutrasimeno.it</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Orari di Check-in</h4>
+                            <p>Dalle 15:00 alle 19:00 (contattaci per orari diversi)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3 class="contact-form-title">Inviaci un messaggio</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nome e Cognome" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Telefono">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Messaggio" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Invia Messaggio</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">Blu Trasimeno</div>
+                    <p class="footer-text">Un'oasi di pace e relax sulle rive del Lago Trasimeno, dove la tradizione umbra incontra il comfort moderno per regalarti una vacanza indimenticabile.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tripadvisor"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Link Utili</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">La Casa</a></li>
+                        <li><a href="#features">Servizi</a></li>
+                        <li><a href="#gallery">Galleria</a></li>
+                        <li><a href="#surroundings">Dintorni</a></li>
+                        <li><a href="#contact">Contatti</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Dintorni</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Lago Trasimeno</a></li>
+                        <li><a href="#">Isola Maggiore</a></li>
+                        <li><a href="#">Castiglione del Lago</a></li>
+                        <li><a href="#">Perugia</a></li>
+                        <li><a href="#">Assisi</a></li>
+                        <li><a href="#">Cortona</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Newsletter</h3>
+                    <p class="footer-text">Iscriviti alla nostra newsletter per ricevere offerte speciali e novità.</p>
+                    <form class="footer-form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="La tua email" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Iscriviti</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Blu Trasimeno - Casa Vacanze. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navList = document.querySelector('.nav-list');
+        
+        mobileToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                navList.classList.remove('active');
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

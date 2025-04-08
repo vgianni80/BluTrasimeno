@@ -1,0 +1,30 @@
+name: Deploy to Aruba Hosting
+
+on:
+  push:
+    branches:
+      - main  # o master, a seconda del nome del tuo branch principale
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      # Aggiungi qui eventuali step di build (npm, yarn, ecc.)
+      # Esempio:
+      # - name: Build
+      #   run: |
+      #     npm install
+      #     npm run build
+        
+      - name: Deploy to Aruba via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./  # o ./dist/ o ./build/ se hai una directory di build
+          server-dir: /test  # o la directory specifica sul server Aruba
+          dangerous-clean-slate: false  # Impostare su true per eliminare tutti i file sul server prima del deploy

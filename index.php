@@ -58,6 +58,7 @@
             justify-content: center;
             align-items: center;
         }
+        
         .prenota-dialog {
             position: fixed;
             top: 0;
@@ -69,6 +70,38 @@
             z-index: 2000;
             justify-content: center;
             align-items: center;
+            overflow-y: auto; /* Aggiungiamo scrolling verticale se necessario */
+            padding: 20px;
+        }
+        .prenota-dialog .container {
+            width: 95%;
+            max-width: 1400px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centra il contenuto verticalmente */
+            max-height: 800px;
+            overflow: hidden;
+            position: relative; /* Per il posizionamento del pulsante di chiusura */
+        }
+
+        /* .prenota-dialog .container {
+            
+            width: 1400px;
+            max-width: 98%;
+            height: 80vh; 
+            display: flex;
+            flex-direction: column;
+            max-height: 800px;
+            overflow: hidden; 
+        } 
+        */
+
+        .prenota-dialog iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
         }
         .language-selector {
             position: fixed;
@@ -416,7 +449,7 @@
     </section>
 
     <!--class="container mx-auto py-32 bg-gray-100"-->
-    <section id="camere" class="bg-gray-100 py-16">
+    <section id="camere" class="block md:hidden bg-gray-100 py-16">
         <h2 class="text-4xl text-center mb-12 font-semibold lang text-sky-600" data-it="Il Nostro Appartamento" data-en="Our Apartment"></h2>
         <div class="grid md:grid-cols-3 gap-8 container">
             <div class="bg-white shadow-lg rounded-lg overflow-hidden">
@@ -588,14 +621,13 @@
         </div>
     </section>
 
-    <!-- Sezione pop-up prenotazioni -->
     <section id="prenota-dialog" class="prenota-dialog">
-        <div class="container mx-auto bg-white justify-center w-full shadow-lg rounded-lg">
-            <iframe
-                    class="h-[500px] md:h-[690px] flex justify-center items-center w-full"
-                    id="host-websites-widget"
-                    src="https://widget.holiduhost.com/widget/955c2e5e-6ed5-41ab-8b92-a6846758c6a5">
-           </iframe>
+        <div class="container mx-auto bg-white shadow-lg rounded-lg">
+            <br/>
+            <iframe 
+                id="host-websites-widget"
+                src="https://widget.holiduhost.com/widget/955c2e5e-6ed5-41ab-8b92-a6846758c6a5">
+            </iframe>
         </div>
     </section>
 
@@ -734,6 +766,72 @@
             function prenotazione() {
                 prenotaDialog.style.display = 'flex'                
             }
+
+            function setupPrenotaDialog() {
+                const prenotaDialog = document.getElementById('prenota-dialog');
+                const iframe = document.getElementById('host-websites-widget');
+                const prenotaContent = prenotaDialog.querySelector('.container');
+                const prenotaLink = document.getElementById('linkPrenotazione');
+                
+                // Funzione per dimensionare l'iframe correttamente
+                function resizeIframe() {
+                    // Calcola l'altezza disponibile (80% dell'altezza della finestra)
+                    const availableHeight = window.innerHeight * 0.8;
+                    prenotaContent.style.height = `${availableHeight}px`;
+                    
+                    // Se su mobile, usa l'intera larghezza
+                    if (window.innerWidth < 768) {
+                        prenotaContent.style.width = '98%';
+                    } else {
+                        prenotaContent.style.width = '95%';
+                        prenotaContent.style.maxWidth = '1400px';
+                    }
+
+                    iframe.style.margin = 'auto 0';
+                }
+                
+                // Ridimensiona quando la finestra cambia dimensione
+                window.addEventListener('resize', resizeIframe);
+                
+                // Apri il dialog quando si clicca su "Prenota Ora"
+                prenotaLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    prenotaDialog.style.display = 'flex';
+                    resizeIframe(); // Assicurati che le dimensioni siano corrette
+                });
+                
+                // Chiudi il dialog quando si clicca fuori dal contenuto
+                prenotaDialog.addEventListener('click', function(e) {
+                    if (!prenotaContent.contains(e.target)) {
+                        prenotaDialog.style.display = 'none';
+                    }
+                });
+                
+                // Aggiungi un pulsante di chiusura (X) per migliorare l'usabilità
+                const closeButton = document.createElement('button');
+                closeButton.innerHTML = '&times;';
+                closeButton.className = 'close-button';
+                closeButton.style.cssText = `
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    background: #fff;
+                    border: none;
+                    border-radius: 50%;
+                    width: 30px;
+                    height: 30px;
+                    font-size: 20px;
+                    cursor: pointer;
+                    z-index: 2100;
+                `;
+                closeButton.addEventListener('click', function() {
+                    prenotaDialog.style.display = 'none';
+                });
+                prenotaContent.style.position = 'relative';
+                prenotaContent.appendChild(closeButton);
+            }
+
+            setupPrenotaDialog();
 
             // Chiudi il dialogo quando si clicca fuori dal contenuto
             prenotaDialog.addEventListener('click', function(e) {

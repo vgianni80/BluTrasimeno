@@ -2,331 +2,32 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blu Trasimeno - Casa Vacanze</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Blu Trasimeno: accogliente casa vacanza immersa nella natura, a pochi passi dal Lago Trasimeno. Scopri la tua prossima vacanza in Umbria.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/output.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
-    <link href="./css/output.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Lato', sans-serif;
-        }
-        .hero-bg {
-            /*background-image: "./assets/img/copertina.jpg";*/
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            z-index: 1;
-        }
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 50;
-            background-color: rgba(2, 132, 199, 0.9); /* rgba(121, 163, 226); /* Sfondo semi-trasparente */
-            padding: 0.5rem;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        section {
-            scroll-margin-top: 80px;
-        }
-        .cookie-banner {
-            display: none;
-            z-index: 1000;
-        }
-        .privacy-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: none;
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .prenota-dialog {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: none;
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            overflow-y: auto; /* Aggiungiamo scrolling verticale se necessario */
-            padding: 20px;
-        }
-        .prenota-dialog .container {
-            width: 95%;
-            max-width: 1400px;
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Centra il contenuto verticalmente */
-            max-height: 800px;
-            overflow: hidden;
-            position: relative; /* Per il posizionamento del pulsante di chiusura */
-        }
+    <link href="./css/pers.css" rel="stylesheet">
 
-        /* .prenota-dialog .container {
-            
-            width: 1400px;
-            max-width: 98%;
-            height: 80vh; 
-            display: flex;
-            flex-direction: column;
-            max-height: 800px;
-            overflow: hidden; 
-        } 
-        */
-
-        .prenota-dialog iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            display: block;
-        }
-        .language-selector {
-            position: fixed;
-            right: 20px; /* Già modificato con un margine */
-            z-index: 20;
-        }
-        #language-dropdown {
-            right: 0; 
-            left: auto;
-            width: 150px;
-            transform: translateX(-30%); 
-            transform: translateY(30%);
-        }        
-        .header-carousel {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-        }
-        .carousel-item {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-            background-size: cover;
-            background-position: center;
-        }
-        .carousel-item.active {
-            opacity: 0.9;
-        }
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 10;
-            transition: background-color 0.3s;
-        }
-
-        .carousel-nav:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .carousel-nav-prev {
-            left: 20px;
-        }
-
-        .carousel-nav-next {
-            right: 20px;
-        }
-        /* Assicura che l'overlay sia sopra il carosello ma sotto il nav */
-        .header-overlay {
-            z-index: 2;
-        }
-
-        .section {
-            padding: 60px 0;
-        }
-            
-        .section-title h2 {
-            font-size: 2rem;
-        }
-            
-        .section-title p {
-            font-size: 1.1rem;
-        }
-
-        /* Servizi Section */
-        .features {
-            background-color: white;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
-        }
-        
-        .feature-card {
-            background-color: #f9f9f9;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon {
-            background-color: #3498db;
-            color: white;
-            font-size: 2rem;
-            padding: 25px 0;
-            text-align: center;
-        }
-        
-        .feature-content {
-            padding: 25px;
-        }
-        
-        .feature-title {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: #1a252f;
-            color: #bdc3c7;
-            padding: 80px 0 0;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 50px;
-        }
-        
-        .footer-column {
-            flex: 1;
-            min-width: 250px;
-            padding: 0 20px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 15px;
-        }
-        
-        .footer-text {
-            margin-bottom: 20px;
-            color: #95a5a6;
-            line-height: 1.7;
-        }
-        
-        .footer-title {
-            font-size: 1.3rem;
-            color: white;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: #3498db;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: #95a5a6;
-            transition: color 0.3s ease;
-            display: block;
-            padding: 3px 0;
-        }
-        
-        .footer-links a:hover {
-            color: #3498db;
-            padding-left: 5px;
-        }
-        
-        .footer-social {
-            display: flex;
-            margin-top: 20px;
-        }
-        
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            color: rgba(255, 255, 255, 0.05);
-            margin-right: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-link:hover {
-            background-color: #3498db;
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding: 25px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.9rem;
-        }
-    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "Blu Trasimeno Casa Vacanze",
+      "url": "https://www.blutrasimeno.it",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Via Paolo Borsellino 5",
+        "addressLocality": "Tuoro sul Trasimeno",
+        "postalCode": "06069",
+        "addressCountry": "IT"
+      },
+      "telephone": "+39 338 9578659"
+    }
+    </script>    
 </head>
 <body class="bg-white dark:bg-gray-500">
     <!-- Cookie Banner -->
@@ -393,11 +94,11 @@
         <nav class="p-6 flex justify-between items-center">
             <div class="flex items-center">
                 <div>
-                    <a href="#" class="mx-4 hover:text-sky-600 lang" data-it="Home" data-en="Home"></a>
-                    <a href="#camere" class="mx-4 hover:text-yellow-300 lang" data-it="L'appartamento" data-en="Rooms"></a>
-                    <a href="#posizione" class="mx-4 hover:text-yellow-300 lang" data-it="La Posizione" data-en="Location"></a>
-                    <a href="#servizi" class="mx-4 hover:text-yellow-300 lang" data-it="Servizi" data-en="Services"></a>
-                    <a href="#contatti" class="mx-4 hover:text-yellow-300 lang" data-it="Contatti" data-en="Contact"></a>
+                    <a href="#" class="hover-highlight mx-4 lang" data-it="Home" data-en="Home"></a>
+                    <a href="#camere" class="mx-4 hover-highlight lang" data-it="L'appartamento" data-en="Rooms"></a>
+                    <a href="#posizione" class="mx-4 hover-highlight lang" data-it="La Posizione" data-en="Location"></a>
+                    <a href="#servizi" class="mx-4 hover-highlight lang" data-it="Servizi" data-en="Services"></a>
+                    <a href="#contatti" class="mx-4 hover-highlight lang" data-it="Contatti" data-en="Contact"></a>
                 </div>
                 <div class="language-selector ml-4">
                     <div id="language-select" class="cursor-pointer flex items-center relative">
@@ -431,98 +132,107 @@
     </header>
 
     <!-- La Casa Section -->
-    <section id="about" class="section about container mx-auto py-16 px-4">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <div class="section-title justify-center items-center">
-                        <!-- <h2>Benvenuti a Blu Trasimeno</h2> -->
-                        <h2 class="text-4xl text-center mb-12 font-semibold lang text-sky-600" data-it="La tua oasi di pace sul lago" data-en="Your italian paceful oasi"></h2>
-                        <p>Benvenuti a Blu Trasimeno, un'incantevole casa vacanze situata nel caratteristico borgo di Tuoro sul Trasimeno. La nostra struttura offre un rifugio perfetto per chi desidera trascorrere momenti indimenticabili immerso nella bellezza naturale dell'Umbria e del famoso Lago Trasimeno.</p>
-                        <p>La casa, recentemente ristrutturata con materiali di pregio e finiture di alta qualità, mantiene lo charme e l'autenticità della tradizione umbra combinandola con tutti i comfort moderni. Gli spazi ampi e luminosi, l'arredamento curato nei minimi dettagli e l'atmosfera accogliente rendono Blu Trasimeno il luogo ideale per vacanze in famiglia o con gli amici.</p>
-                        <p>Il giardino privato offre uno spazio all'aperto perfetto per rilassarsi, fare barbecue o semplicemente godersi la tranquillità dell'Umbria.</p>
-                        <p>Comfort moderni e attenzioni speciali per rendere il tuo soggiorno indimenticabile.</p>
-                    </div>                    
+    <section id="about" class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="about-text">
+                <div class="section-title justify-center items-center w-full h-auto">
+                    <!-- <h2>Benvenuti a Blu Trasimeno</h2> -->
+                    <h2 class="text-4xl text-center mb-12 font-semibold lang text-sky-600" data-it="La tua oasi di pace sul lago" data-en="Your italian paceful oasi"></h2>
+                    <p>Benvenuti a Blu Trasimeno, un'incantevole casa vacanze situata nel caratteristico borgo di Tuoro sul Trasimeno. La nostra struttura offre un rifugio perfetto per chi desidera trascorrere momenti indimenticabili immerso nella bellezza naturale dell'Umbria e del famoso Lago Trasimeno.</p>
+                    <br/>
+                    <p>La casa, recentemente ristrutturata con materiali di pregio e finiture di qualità, mantiene l'autenticità della tradizione umbra combinandola con tutti i comfort moderni. Gli spazi ampi e luminosi, l'arredamento curato nei minimi dettagli e l'atmosfera accogliente rendono Blu Trasimeno il luogo ideale per vacanze in famiglia o con gli amici.</p>
+                    <br/>
+                    <p>L’appartamento dispone altresì di una cucina atrezzata di tutto:
+                        piano cottura, frigo, forno, microonde, bollitore, tostapane, stoviglie e pentole di ogni genere… macchina per caffè espresso e cialde.
+                    </p>
+                    <br/>
+                    <p>Il giardino privato offre uno spazio all'aperto perfetto per fare colazione, fare un barbecue, o semplicemente per rilassarsi e godersi la tranquillità dell'Umbria.</p>
+                    <br/>
+                    <p>Tutte le stanze sono dotate di climatizzatore. Comfort moderni e attenzioni speciali per rendere il tuo soggiorno indimenticabile.</p>
+                </div>                    
+            </div>
+        </div>
+    </section>
+
+    <section id="camere" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl text-center mb-12 font-semibold lang text-sky-600" data-it="Il Nostro Appartamento" data-en="Our Apartment"></h2>
+            <div class="grid md:grid-cols-3 gap-8 mx-auto h-auto justify-center">
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                    <img src="./assets/img/copertina15.jpg" alt="Soggiorno-Cucina" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-4 lang" data-it="Il Soggiorno" data-en="Family Room"></h3>
+                        <p class="lang" 
+                            data-it="Un ambiente accogliente e rilassante, perfetto per leggere un libro o sorseggiare un caffè, con vista diretta sul verde del giardino: un invito alla tranquillità." 
+                            data-en="Spacious family room with two beds and living area.">
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                    <img src="./assets/img/copertina21.jpg" 
+                        alt="Soggiorno-Cucina" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-4 lang" data-it="La Cucina" data-en="Family Room"></h3>
+                        <p class="lang" 
+                            data-it="Una cucina moderna e funzionale, dotata di tutto il necessario per preparare piatti gustosi anche in vacanza. Spazio, comfort e praticità al tuo servizio." 
+                            data-en="Spacious family room with two beds and living area.">
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                    <img src="./assets/img/copertina08.jpg"  alt="Camera Blu" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-4 lang" data-it="Camera Blu" data-en="Double Room"></h3>
+                        <p class="lang" 
+                        data-it="Ampia, elegante e baciata dalla luce naturale: la camera ideale per un riposo rigenerante, tra stile e comodità." 
+                        data-en="Spacious room with panoramic view of the Tuscan countryside.">
+                    </p>
+                    </div>
+                </div>
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                    <img src="./assets/img/copertina35.jpg" 
+                        alt="Camera Arancio" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-4 lang" data-it="Camera Arancio" data-en="Second Room"></h3>
+                        <p class="lang" 
+                            data-it="Perfetta per coppie o ragazzi, questa camera offre un letto alla francese e un’atmosfera calda e accogliente, ideale per sentirsi subito a casa." 
+                            data-en="Luxurious suite with private terrace and jacuzzi.">
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                    <img src="./assets/img/copertina03.jpg" 
+                        alt="Il Bagno" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-4 lang" data-it="Il Bagno" data-en="Family Room"></h3>
+                        <p class="lang" data-it="Design moderno, grande luminosità e cura dei dettagli: un bagno pensato per il tuo benessere quotidiano." data-en="Spacious family room with two beds and living area."></p>
+                    </div>
+                </div>
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                    <img src="./assets/img/copertina30.jpg" 
+                        alt="Il Giardino" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-4 lang" data-it="Il Giardino" data-en="Family Room"></h3>
+                        <p class="lang" 
+                            data-it="Un angolo all'aperto tutto per te. Ideale per rilassarsi al sole, gustare un aperitivo o organizzare una grigliata con il barbecue a disposizione. Il luogo perfetto per vivere l’aria aperta in totale tranquillità." 
+                            data-en="Spacious family room with two beds and living area.">
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!--class="container mx-auto py-32 bg-gray-100"-->
-    <section id="camere" class="block md:hidden bg-gray-100 py-16">
-        <h2 class="text-4xl text-center mb-12 font-semibold lang text-sky-600" data-it="Il Nostro Appartamento" data-en="Our Apartment"></h2>
-        <div class="grid md:grid-cols-3 gap-8 container">
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                <img src="./assets/img/copertina15.jpg" 
-                    alt="Soggiorno-Cucina" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold mb-4 lang" data-it="Il Soggiorno" data-en="Family Room"></h3>
-                    <p class="lang" 
-                        data-it="Un ambiente accogliente e rilassante, perfetto per leggere un libro o sorseggiare un caffè, con vista diretta sul verde del giardino: un invito alla tranquillità." 
-                        data-en="Spacious family room with two beds and living area.">
-                    </p>
-                </div>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                <img src="./assets/img/copertina21.jpg" 
-                    alt="Soggiorno-Cucina" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold mb-4 lang" data-it="La Cucina" data-en="Family Room"></h3>
-                    <p class="lang" 
-                        data-it="Una cucina moderna e funzionale, dotata di tutto il necessario per preparare piatti gustosi anche in vacanza. Spazio, comfort e praticità al tuo servizio." 
-                        data-en="Spacious family room with two beds and living area.">
-                    </p>
-                </div>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                <img src="https://lh3.googleusercontent.com/p/AF1QipMrYg1q2NKM6CwpSv2HWgCI-TmwVp7uHLftGjf3=s680-w680-h510" alt="Camera Matrimoniale" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold mb-4 lang" data-it="Camera Blu" data-en="Double Room"></h3>
-                    <p class="lang" 
-                    data-it="Ampia, elegante e baciata dalla luce naturale: la camera ideale per un riposo rigenerante, tra stile e comodità." 
-                    data-en="Spacious room with panoramic view of the Tuscan countryside.">
-                </p>
-                </div>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                <img src="./assets/img/copertina35.jpg" 
-                    alt="Suite" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold mb-4 lang" data-it="Camera Arancio" data-en="Second Room"></h3>
-                    <p class="lang" 
-                        data-it="Perfetta per coppie o ragazzi, questa camera offre un letto alla francese e un’atmosfera calda e accogliente, ideale per sentirsi subito a casa." 
-                        data-en="Luxurious suite with private terrace and jacuzzi.">
-                    </p>
-                </div>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                <img src="./assets/img/copertina03.jpg" 
-                    alt="Il Bagno" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold mb-4 lang" data-it="Il Bagno" data-en="Family Room"></h3>
-                    <p class="lang" data-it="Design moderno, grande luminosità e cura dei dettagli: un bagno pensato per il tuo benessere quotidiano." data-en="Spacious family room with two beds and living area."></p>
-                </div>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                <img src="./assets/img/copertina30.jpg" 
-                    alt="Il Giardino" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold mb-4 lang" data-it="Il Giardino" data-en="Family Room"></h3>
-                    <p class="lang" 
-                        data-it="Un angolo all'aperto tutto per te. Ideale per rilassarsi al sole, gustare un aperitivo o organizzare una grigliata con il barbecue a disposizione. Il luogo perfetto per vivere l’aria aperta in totale tranquillità." 
-                        data-en="Spacious family room with two beds and living area.">
-                    </p>
-                </div>
-            </div>
-        </div>
+    <section id="posizione" class="py-4 bg-gray-100">
     </section>
 
-        <!-- Servizi Section -->
-    <section id="features" class="section features container mx-auto py-16 px-4">
-        <div class="container">
+    <!-- Servizi Section -->
+    <section id="servizi" class="py-16">
+        <div class="container mx-auto px-4">
             <div class="section-title">
-                <h2>I Nostri Servizi</h2>
-                <p>Comfort moderni e attenzioni speciali per rendere il tuo soggiorno indimenticabile</p>
+                <h2 class="text-4xl text-center mb-12 font-semibold lang" data-it="I Nostri Servizi" data-en="Our services"></h2>
+                <p class="justify-center text-center">Comfort moderni e attenzioni speciali per rendere il tuo soggiorno indimenticabile</p>
+                <br/>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
@@ -583,15 +293,17 @@
         </div>
     </section>
 
-    <section id="contatti" class="bg-gray-100 py-16 justify-center items-center">
+    <section id="contatti" class="py-16 bg-gray-100">
         <h2 class="text-4xl text-center mb-12 font-semibold lang" data-it="Contattaci" data-en="Contact Us"></h2>
-        <div class="container grid grid-cols-2 content-start gap-4 bg-white shadow-lg rounded-lg p-8 flex flex-col">
-            <div>
-                <iframe class="py-16 justify-center items-center mx-auto"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.9919107482947!2d12.075448512323605!3d43.204328681225455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132c011ccb168fcd%3A0x66568c4ce2b33a57!2sBlu%20Trasimeno%20-%20Casa%20Vacanze%20CIN%3A%20IT054055C204034007!5e1!3m2!1sit!2sit!4v1743186738011!5m2!1sit!2sit" width="450" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        <div class="container mx-auto px-4 shadow-lg rounded-lg bg-white content-start gap-4 flex flex-col justify-center" >
+            <div class="mappa-responsive">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.9919107482947!2d12.075448512323605!3d43.204328681225455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132c011ccb168fcd%3A0x66568c4ce2b33a57!2sBlu%20Trasimeno%20-%20Casa%20Vacanze%20CIN%3A%20IT054055C204034007!5e1!3m2!1sit!2sit!4v1743186738011!5m2!1sit!2sit"
+                    width="1920" height="1400" style="border:0;" allowfullscreen="allowfullscreen" aria-hidden="false"
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
-            <div class="py-16 justify-center items-center">
+            <div class="py-16 justify-center items-center mx-auto">
                 <form id="contact-form" action="mail.php" method="POST">
                     <div class="mb-4">
                         <label class="block mb-2 lang" data-it="Nome" data-en="Name"></label>
@@ -622,8 +334,9 @@
     </section>
 
     <section id="prenota-dialog" class="prenota-dialog">
-        <div class="container mx-auto bg-white shadow-lg rounded-lg">
+        <div class="container mx-auto bg-white shadow-lg rounded-lg" style="overflow: auto;padding: 0 1.5rem;width: 100%;display: flex;justify-content: center;">
             <br/>
+            <p class="mx-auto justify-center font-semibold">Fai click sulla foto per i dettagli e prenotare</p>
             <iframe 
                 id="host-websites-widget"
                 src="https://widget.holiduhost.com/widget/955c2e5e-6ed5-41ab-8b92-a6846758c6a5">
@@ -646,51 +359,44 @@
                         <li><a href="#about">La Casa</a></li>
                         <li><a href="#features">Servizi</a></li>
                         <li><a href="#gallery">Galleria</a></li>
-                        <li><a href="#surroundings">Dintorni</a></li>
                         <li><a href="#contact">Contatti</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3 class="footer-title">Dintorni</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Lago Trasimeno</a></li>
-                        <li><a href="#">Isola Maggiore</a></li>
-                        <li><a href="#">Castiglione del Lago</a></li>
-                        <li><a href="#">Perugia</a></li>
-                        <li><a href="#">Assisi</a></li>
-                        <li><a href="#">Cortona</a></li>
+                        <li><a href="https://www.lagotrasimeno.net/" target="_blank">Lago Trasimeno</a></li>
+                        <li><a href="https://www.lagotrasimeno.net/it/il-parco-e-le-sue-isole-s6" target="_blank">Il Parco e le sue Isole</a></li>
+                        <li><a href="https://www.lagotrasimeno.net/it/itinerari-m4" target="_blank">Itinerari e Tour sul Lago Trasimeno</a></li>
+                        <li><a href="http://www.perugiaonline.it/" target="_blank">Perugia</a></li>
+                        <li><a href="https://www.visit-assisi.it/" target="_blank">Assisi</a></li>
+                        <li><a href="https://www.turiscortona.it/" target="_blank">Cortona</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p class="lang" data-it="© 2025 Blu Trasimeno. Tutti i diritti riservati." data-en="© 2025 Blu Trasimeno. All rights reserved."></p>
+                <p class="lang" data-it="&copy; <?php echo date("Y"); ?> Blu Trasimeno. Tutti i diritti riservati." data-en="© 2025 Blu Trasimeno. All rights reserved."></p>
+                <p>CIN: IT054055C204034007</p>
                 <div class="mt-4">
-                <a href="#" class="mx-2 hover:text-yellow-300 lang" data-it="Privacy" data-en="Privacy"></a>
-                <a href="#" class="mx-2 hover:text-yellow-300 lang" data-it="Termini" data-en="Terms"></a>
-                <a href="#" class="mx-2 hover:text-yellow-300 lang" data-it="Contatti" data-en="Contact"></a>
+                <a href="#" class="mx-2 hover-highlight lang" data-it="Privacy" data-en="Privacy"></a>
+                <a href="#" class="mx-2 hover-highlight lang" data-it="Termini" data-en="Terms"></a>
+                <a href="#" class="mx-2 hover-highlight lang" data-it="Contatti" data-en="Contact"></a>
             </div>
             </div>
         </div>
     </footer>
 
-    <!-- <footer class="bg-gray-900 text-white py-8">
-        <div class="container mx-auto text-center">
-            <p class="lang" data-it="© 2025 Blu Trasimeno. Tutti i diritti riservati." data-en="© 2025 Blu Trasimeno. All rights reserved."></p>
-            <div class="mt-4">
-                <a href="#" class="mx-2 hover:text-yellow-300 lang" data-it="Privacy" data-en="Privacy"></a>
-                <a href="#" class="mx-2 hover:text-yellow-300 lang" data-it="Termini" data-en="Terms"></a>
-                <a href="#" class="mx-2 hover:text-yellow-300 lang" data-it="Contatti" data-en="Contact"></a>
-            </div>
-        </div>
-    </footer> -->
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Language Management
             const languageSelect = document.getElementById('language-select');
-            const currentLanguage = document.getElementById('current-language');
             const languageDropdown = document.getElementById('language-dropdown');
             const languageOptions = document.querySelectorAll('.language-option');
+
+            const currentLanguage = document.getElementById('current-language');
+            const dropdown = document.getElementById("language-dropdown");
+            const toggle = document.getElementById("language-select");
+            const options = document.querySelectorAll(".language-option");
         
             // Cookie and Privacy Management
             const cookieBanner = document.getElementById('cookie-banner');
@@ -709,8 +415,34 @@
             let currentIndex = 0;
             let slideInterval; // Per gestire l'intervallo
 
+            // Mostra/nasconde il menu quando clicchi sul selettore
+            toggle.addEventListener("click", function (e) {
+                dropdown.classList.toggle("hidden");
+            });
+
+            // Aggiunge il comportamento per ogni opzione lingua
+            options.forEach(option => {
+                option.addEventListener("click", function () {
+                    const lang = this.getAttribute("data-lang");
+
+                    // Chiude il dropdown
+                    dropdown.classList.add("hidden");
+
+                    // Cambia lingua via URL
+                    const url = new URL(window.location.href);
+                    url.searchParams.set("lang", lang);
+                    window.location.href = url;
+                });
+            });
+
+            // Chiude il menu cliccando fuori
+            document.addEventListener("click", function (event) {
+                if (!toggle.contains(event.target)) {
+                    dropdown.classList.add("hidden");
+                }
+            });
+
             document.getElementById('linkPrenotazione').addEventListener('click', function(e) {
-                console.log('intercetto il click')
                 e.preventDefault(); // Impedisce la navigazione predefinita
                 prenotazione();
             }); 
@@ -760,7 +492,6 @@
 
             // Inizia lo slideshow automatico
             startSlideShow();
-            //setInterval(nextSlide, 5000);
 
             //Modal Prenotazione
             function prenotazione() {

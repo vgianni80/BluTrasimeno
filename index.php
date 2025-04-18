@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Blu Trasimeno - Casa Vacanze</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <meta name="description" content="Blu Trasimeno: accogliente casa vacanza immersa nella natura, a pochi passi dal Lago Trasimeno. Scopri la tua prossima vacanza in Umbria.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./css/output.css" rel="stylesheet">
@@ -77,15 +77,16 @@
 
     <header class="hero-bg h-screen relative text-white">
         <div id="header-carousel" class="header-carousel">
-            <div class="carousel-item active" style="background-image: url('./assets/img/copertina01.jpg');"></div>
-            <div class="carousel-item" style="background-image: url('./assets/img/copertina02.jpg');"></div>
-            <div class="carousel-item" style="background-image: url('./assets/img/copertina03.jpg');"></div>
-            <div class="carousel-item" style="background-image: url('./assets/img/copertina04.jpg');"></div>
-            <div class="carousel-item" style="background-image: url('./assets/img/copertina05.jpg');"></div>
-            <div class="carousel-item" style="background-image: url('./assets/img/copertina06.jpg');"></div>
-            <div class="carousel-item" style="background-image: url('./assets/img/copertina07.jpg');"></div>
-            <div class="carousel-item" style="background-image: url('./assets/img/copertina08.jpg');"></div>
+            <div class="carousel-item active" style="background-image: url('./assets/img/copertina17.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('./assets/img/copertina15.jpg');"></div>
             <div class="carousel-item" style="background-image: url('./assets/img/copertina09.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('./assets/img/copertina19.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('./assets/img/copertina10.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('./assets/img/copertina28.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('./assets/img/copertina03.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('./assets/img/copertina24.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('./assets/img/copertina30.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('./assets/img/copertina27.jpg');"></div>
 
             <!-- Frecce di navigazione -->
             <button id="prev-slide" class="carousel-nav carousel-nav-prev">&lt;</button>
@@ -295,14 +296,22 @@
 
     <section id="contatti" class="py-16 bg-gray-100">
         <h2 class="text-4xl text-center mb-12 font-semibold lang" data-it="Contattaci" data-en="Contact Us"></h2>
-        <div class="container mx-auto px-4 shadow-lg rounded-lg bg-white content-start gap-4 flex flex-col justify-center" >
-            <div class="mappa-responsive">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.9919107482947!2d12.075448512323605!3d43.204328681225455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132c011ccb168fcd%3A0x66568c4ce2b33a57!2sBlu%20Trasimeno%20-%20Casa%20Vacanze%20CIN%3A%20IT054055C204034007!5e1!3m2!1sit!2sit!4v1743186738011!5m2!1sit!2sit"
-                    width="1920" height="1400" style="border:0;" allowfullscreen="allowfullscreen" aria-hidden="false"
-                    loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+        <div class="container mx-auto px-4 shadow-lg rounded-lg bg-white content-start gap-8 flex flex-col justify-center" >
+            <div class="py-16 justify-center items-center mx-auto">
+                <iframe
+                    padding: 60px 0;
+                    width="500px"
+                    height="500px"
+                    frameborder="0" 
+                    style="border:0"
+                    loading="lazy"
+                    aria-hidden="false"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAejE0GjQGWbhVbz9X2n2W7SR-dFoJhhq0&q=Blu Trasimeno - Casa Vacanze CIN: IT054055C204034007"
+                    allowfullscreen>
+                </iframe>                
             </div>
+        
             <div class="py-16 justify-center items-center mx-auto">
                 <form id="contact-form" action="mail.php" method="POST">
                     <div class="mb-4">
@@ -335,14 +344,18 @@
 
     <section id="prenota-dialog" class="prenota-dialog">
         <div class="container mx-auto bg-white shadow-lg rounded-lg" style="overflow: auto;padding: 0 1.5rem;width: 100%;display: flex;justify-content: center;">
-            <br/>
-            <p class="mx-auto justify-center font-semibold">Fai click sulla foto per i dettagli e prenotare</p>
             <iframe 
                 id="host-websites-widget"
                 src="https://widget.holiduhost.com/widget/955c2e5e-6ed5-41ab-8b92-a6846758c6a5">
             </iframe>
+            <br/>
+            <p class="mx-auto justify-center font-semibold">Fai click sulla foto per i dettagli e prenotare</p>
         </div>
     </section>
+
+    <!-- Elfsight WhatsApp Chat | Blu Trasimeno Whatsapp -->
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+    <div class="elfsight-app-4b78195c-723f-4369-817f-7557127a8526" data-elfsight-app-lazy></div>
 
     <!-- Footer -->
     <footer class="footer">
